@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --accent-primary: #2563EB; /* Blue default */
+    --accent-hover: #1D4ED8;
+    --accent-light: #EFF6FF;
+    --accent-ring: rgba(37, 99, 235, 0.2);
+  }
+
+  /* Accent Color Variants */
+  [data-accent="purple"] {
+    --accent-primary: #7C3AED;
+    --accent-hover: #6D28D9;
+    --accent-light: #F5F3FF;
+    --accent-ring: rgba(124, 58, 237, 0.2);
+  }
+
+  [data-accent="emerald"] {
+    --accent-primary: #059669;
+    --accent-hover: #047857;
+    --accent-light: #ECFDF5;
+    --accent-ring: rgba(5, 150, 105, 0.2);
+  }
+
+  [data-accent="indigo"] {
+    --accent-primary: #4F46E5;
+    --accent-hover: #4338CA;
+    --accent-light: #EEF2FF;
+    --accent-ring: rgba(79, 70, 229, 0.2);
+  }
+
+  [data-accent="amber"] {
+    --accent-primary: #D97706;
+    --accent-hover: #B45309;
+    --accent-light: #FFFBEB;
+    --accent-ring: rgba(217, 119, 6, 0.2);
+  }
+
+  [data-accent="rose"] {
+    --accent-primary: #E11D48;
+    --accent-hover: #BE123C;
+    --accent-light: #FFF1F2;
+    --accent-ring: rgba(225, 29, 72, 0.2);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+
+  .dark body {
+    background-color: #070B18;
+    color: #F8FAFC;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B18"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background container with rounded corners -->
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <rect width="510" height="510" x="1" y="1" rx="107" fill="none" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Geometric cube / stock symbol with pulse/growth chart -->
+  <g transform="translate(64, 64)">
+    <!-- Subtle grid glow -->
+    <circle cx="192" cy="192" r="140" fill="#3B82F6" opacity="0.08" filter="blur(20px)"/>
+
+    <!-- Bar charts representing inventory & intelligence -->
+    <rect x="76" y="210" width="44" height="110" rx="8" fill="url(#bar1)"/>
+    <rect x="144" y="150" width="44" height="170" rx="8" fill="url(#bar2)"/>
+    <rect x="212" y="90" width="44" height="230" rx="8" fill="url(#bar3)"/>
+    <rect x="280" y="130" width="44" height="190" rx="8" fill="url(#accent)"/>
+
+    <!-- Dynamic trend line / intelligence connector -->
+    <path d="M 98 190 L 166 130 L 234 70 L 302 110" fill="none" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Accent nodes -->
+    <circle cx="98" cy="190" r="7" fill="#3B82F6" stroke="#F8FAFC" stroke-width="3"/>
+    <circle cx="166" cy="130" r="7" fill="#06B6D4" stroke="#F8FAFC" stroke-width="3"/>
+    <circle cx="234" cy="70" r="9" fill="#06B6D4" stroke="#F8FAFC" stroke-width="4"/>
+    <circle cx="302" cy="110" r="7" fill="#7C3AED" stroke="#F8FAFC" stroke-width="3"/>
+  </g>
+</svg>
