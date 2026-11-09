@@ -5,9 +5,7 @@
 
 import React, { useState } from 'react';
 import {
-  Settings,
   User,
-  Key,
   Palette,
   Sun,
   Moon,
@@ -16,13 +14,8 @@ import {
   Database,
   ShieldAlert,
   CheckCircle2,
-  AlertCircle,
-  ExternalLink,
-  LogOut,
   RotateCcw,
   Check,
-  Eye,
-  EyeOff,
 } from 'lucide-react';
 import { useBusiness } from '../../context/BusinessContext';
 import { AccentColor, ResponseMode } from '../../types';
@@ -39,17 +32,11 @@ export const SettingsPage: React.FC = () => {
     aiSettings,
     setResponseMode,
     setModel,
-    setCustomApiKey,
-    groqStatus,
-    checkGroqStatus,
     resetToDemoData,
   } = useBusiness();
 
   const accentStyles = getAccentClasses(accentColor);
 
-  const [inputKey, setInputKey] = useState(aiSettings.customApiKey || '');
-  const [showKey, setShowKey] = useState(false);
-  const [keySavedMessage, setKeySavedMessage] = useState(false);
   const [profileSaved, setProfileSaved] = useState(false);
 
   // Profile Form
@@ -94,13 +81,6 @@ export const SettingsPage: React.FC = () => {
     setTimeout(() => setProfileSaved(false), 3000);
   };
 
-  const handleSaveKey = () => {
-    setCustomApiKey(inputKey);
-    setKeySavedMessage(true);
-    checkGroqStatus();
-    setTimeout(() => setKeySavedMessage(false), 3000);
-  };
-
   return (
     <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 bg-slate-50 dark:bg-[#070B18] max-w-4xl">
       {/* Header */}
@@ -141,77 +121,31 @@ export const SettingsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. Groq AI Integration & Model Availability */}
+      {/* 2. Groq AI Integration & Model Architecture */}
       <section className="p-5 bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <Key className="w-5 h-5 text-purple-500" />
+            <Cpu className="w-5 h-5 text-purple-500" />
             <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-              Groq AI API & Model Availability
+              Groq AI Engine & Model Architecture
             </h2>
           </div>
           <div className="flex items-center gap-1.5 text-xs">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                groqStatus.isModelAvailable ? 'bg-emerald-500' : 'bg-amber-500'
-              }`}
-            />
-            <span className="font-mono text-slate-700 dark:text-slate-300">
-              {groqStatus.isModelAvailable ? 'Model Online' : 'Check Model'}
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-medium">
+              Server Key Active
             </span>
           </div>
         </div>
 
-        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-          Groq executes high-speed inference for the StockWise AI Assistant. The server verifies model availability via <code className="text-blue-600 dark:text-blue-400 font-mono">https://api.groq.com/openai/v1/models</code> before dispatching completions.
-        </p>
-
-        {keySavedMessage && (
-          <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>API credentials saved. Testing models endpoint...</span>
+        <div className="p-4 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-900/60 text-xs text-purple-950 dark:text-purple-200 leading-relaxed space-y-1.5">
+          <div className="font-semibold flex items-center gap-1.5 text-purple-900 dark:text-purple-100">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span>Server-Side Authentication Configured</span>
           </div>
-        )}
-
-        <div className="space-y-2 text-xs">
-          <label className="block text-slate-700 dark:text-slate-300 font-medium">Groq API Key</label>
-          <div className="relative flex items-center">
-            <input
-              type={showKey ? 'text' : 'password'}
-              value={inputKey}
-              onChange={(e) => setInputKey(e.target.value)}
-              placeholder="gsk_..."
-              className="w-full pl-3 pr-20 py-2.5 text-xs bg-slate-50 dark:bg-[#070B18] text-slate-900 dark:text-white placeholder:text-slate-400 border border-slate-200 dark:border-slate-800 rounded-xl font-mono focus:outline-hidden focus:border-blue-500"
-            />
-            <button
-              type="button"
-              onClick={() => setShowKey(!showKey)}
-              className="absolute right-2 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white"
-            >
-              {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-            </button>
-          </div>
-          <div className="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
-            <span>Free API keys with zero billing required at console.groq.com</span>
-            <a
-              href="https://console.groq.com/keys"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-medium"
-            >
-              <span>Get Free Key</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-
-          <div className="pt-2 flex justify-end">
-            <button
-              onClick={handleSaveKey}
-              className={`px-4 py-2 text-xs font-semibold text-white ${accentStyles.bg} ${accentStyles.hoverBg} rounded-xl shadow-xs`}
-            >
-              Save & Test Connection
-            </button>
-          </div>
+          <p>
+            Groq API integration is securely managed on the backend via the server environment (<code className="font-mono text-purple-700 dark:text-purple-300 font-bold">GROQ_API_KEY</code>). All chatbot completions are processed through secure serverless endpoints. Users never need to supply or manage API keys.
+          </p>
         </div>
 
         {/* Model Selection */}

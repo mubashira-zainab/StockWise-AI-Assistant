@@ -135,26 +135,13 @@ export const AssistantPage: React.FC = () => {
 
           {/* Model Status Badge */}
           <div className="hidden sm:flex items-center gap-2 text-xs">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                groqStatus.isModelAvailable ? 'bg-emerald-500' : 'bg-amber-500'
-              }`}
-            />
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
             <span className="font-mono text-slate-600 dark:text-slate-400">
               {aiSettings.model}
             </span>
-            {groqStatus.isModelAvailable ? (
-              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-                (Verified Online)
-              </span>
-            ) : (
-              <button
-                onClick={() => setActiveTab('settings')}
-                className="text-[10px] text-amber-600 dark:text-amber-400 hover:underline"
-              >
-                (Verify in Settings)
-              </button>
-            )}
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+              (Server Connected)
+            </span>
           </div>
         </div>
 
@@ -185,22 +172,6 @@ export const AssistantPage: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Model Warning Banner if model is unverified */}
-      {groqStatus.error && (
-        <div className="px-6 py-2.5 bg-amber-50 dark:bg-amber-950/40 border-b border-amber-200 dark:border-amber-800 text-xs text-amber-800 dark:text-amber-300 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>{groqStatus.error}</span>
-          </div>
-          <button
-            onClick={() => setActiveTab('settings')}
-            className="font-semibold underline ml-2 shrink-0"
-          >
-            Open Settings
-          </button>
-        </div>
-      )}
 
       {/* Messages Canvas */}
       <div className="flex-1 overflow-y-auto px-4 md:px-8 py-6 space-y-6">

@@ -166,7 +166,6 @@ export interface AISettings {
   responseMode: ResponseMode;
   analysisFocus: AnalysisFocus;
   model: string;
-  customApiKey?: string;
 }
 
 export interface UserProfile {
